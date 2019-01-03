@@ -206,15 +206,15 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
     switch (action) {
       case "test-action":
       sendTextMessage (sender, "the action was caught");
-      var test = request({
+      request({
         url: 'https://springbokdigital.recruitee.com/api/offers',
-      },
+      }, function (error, response, body) {
         let vacancies = JSON.parse(body);
         let reply = "${vacancies["offers"] [0] ["title"]}";
         sendTextMessage (sender, reply);
-    );
+      }
 
-    sendTextMessage(sender, test);
+    );
 
       break;
         default:
