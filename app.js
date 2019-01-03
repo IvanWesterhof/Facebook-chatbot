@@ -208,11 +208,10 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
       sendTextMessage (sender, "the action was caught");
       request({
         url: 'https://springbokdigital.recruitee.com/api/offers',
-      }, function (error, body){
+      },
         let vacancies = JSON.parse(body);
-        let reply = " ${vacancies["offers"] [0] ["title"]} ";
+        let reply = "${vacancies["offers"] [0] ["title"]}";
         sendTextMessage (sender, reply);
-      }
     );
       break;
         default:
