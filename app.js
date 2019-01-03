@@ -213,9 +213,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
         let reply = `${messages[0].text.text} ${vacancies["offers"][0]["title"]}`;
         sendTextMessage (sender, reply);
       }
-
     );
-
       break;
         default:
             //unhandled action, just send back the text
