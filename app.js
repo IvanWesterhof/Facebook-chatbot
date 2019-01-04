@@ -215,6 +215,17 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
       }
     );
       break;
+      case "current-vacancies":
+      sendTextMessage (sender, "the action was caught");
+      request({
+        url: 'https://springbokdigital.recruitee.com/api/offers',
+      }, function (error, response, body) {
+        let vacancies = JSON.parse(body);
+        let reply = `${messages[0].text.text} ${vacancies["offers"][0]["title"]}`;
+        sendTextMessage (sender, reply);
+      }
+    );
+      break;
         default:
             //unhandled action, just send back the text
             handleMessages(messages, sender);
