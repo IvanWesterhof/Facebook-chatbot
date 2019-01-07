@@ -219,7 +219,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
         let vacancies = JSON.parse(body);
 
         /* retrieve length and dialogflow message */
-        let reply = `There are ${vacancies.offers.length} job offers at Springbok right now. ${messages[0].text.text}`;
+        let reply = `There are ${vacancies.offers.length} job offers at Springbok right now. ${messages[0].text.text}` + "\n";
 
         /* retrieve list of job titles from array */
         let list ="";
@@ -748,7 +748,7 @@ function receivedPostback(event) {
 
     switch (payload) {
       case 'GET_STARTED':
-      greetUserText(senderID);
+        greetUserText(senderID);
       break;
         default:
             //unindentified payload
