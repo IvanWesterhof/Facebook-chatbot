@@ -7,4 +7,5 @@ module.exports = {
     DF_LANGUAGE_CODE: process.env.DF_LANGUAGE_CODE,
     GOOGLE_CLIENT_EMAIL: process.env.GOOGLE_CLIENT_EMAIL,
     GOOGLE_PRIVATE_KEY: process.env.GOOGLE_PRIVATE_KEY,
+    FB_PAGE_INBOX_ID: process.env.FB_PAGE_INBOX_ID,
 };

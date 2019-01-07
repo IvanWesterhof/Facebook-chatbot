@@ -35,6 +35,9 @@ if (!config.FB_APP_SECRET) {
 if (!config.SERVER_URL) { //used for ink to static files
     throw new Error('missing SERVER_URL');
 }
+if (!config.FB_PAGE_INBOX_ID) {
+  throw new Error('missing FB_PAGE_INBOX_ID');
+}
 
 
 
@@ -55,8 +58,6 @@ app.use(bodyParser.urlencoded({
 
 // Process application/json
 app.use(bodyParser.json());
-
-
 
 
 
@@ -109,12 +110,30 @@ app.post('/webhook/', function (req, res) {
     if (data.object == 'page') {
         // Iterate over each entry
         // There may be multiple if batched
-        data.entry.forEach(function (pageEntry) {
+        data.entry.forEach(function (pageEntry)
+        {
             var pageID = pageEntry.id;
             var timeOfEvent = pageEntry.time;
 
+            // Secondary receiver is in control - listen on standby channel
+            if (pageEntry.standby)
+            {
+              // iterate webhook events from standby channel
+              pageEntry.standby.forEach(event =>
+              {
+                const psid = event.sender.id;
+                const message = event.message;
+                console.log('message from: ', psid);
+                console.log('message to inbox: ', message);
+              });
+            }
+
+            //Bot is in control - listen for Messages
+            if (pageEntry.messaging)
+            {
             // Iterate over each messaging event
-            pageEntry.messaging.forEach(function (messagingEvent) {
+            pageEntry.messaging.forEach(function (messagingEvent)
+            {
                 if (messagingEvent.optin) {
                     receivedAuthentication(messagingEvent);
                 } else if (messagingEvent.message) {
@@ -131,6 +150,7 @@ app.post('/webhook/', function (req, res) {
                     console.log("Webhook received unknown messagingEvent: ", messagingEvent);
                 }
             });
+            }
         });
 
         // Assume all went well.
@@ -206,36 +226,41 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
 {
     switch (action)
   {
+      // for talk.human case
+      case "talk.human":
+        sendPassThread(sender);
+      break;
       // for the case current-vacancies
       case "current-vacancies":
-      // make an api request
-      request(
-      {
-        url: 'https://springbokdigital.recruitee.com/api/offers',
-      }, function (error, response, body)
-      {
-
-        /* name the object and parse the json */
-        let vacancies = JSON.parse(body);
-
-        /* retrieve length and dialogflow message */
-        let reply = `There are ${vacancies.offers.length} job offers at Springbok right now.` + "\n" + `${messages[0].text.text}` + "\n" + "\n";
-
-        /* retrieve list of job titles from array */
-        let list ="";
-        let newReply = vacancies.offers.forEach(function(offer)
+        // make an api request
+        request(
         {
-          list = list + "*" + offer.title + "\n";
-        });
+          url: 'https://springbokdigital.recruitee.com/api/offers',
+        }, function (error, response, body)
+        {
 
-        /* send both messages to facebook */
-          let compiledMessage = reply + list;
-          sendTextMessage (sender, compiledMessage);
-      }
-    );
+          /* name the object and parse the json */
+          let vacancies = JSON.parse(body);
+
+          /* retrieve length and dialogflow message */
+          let reply = `There are ${vacancies.offers.length} job offers at Springbok right now.` + "\n" + `${messages[0].text.text}` + "\n" + "\n";
+
+          /* retrieve list of job titles from array */
+          let list ="";
+          let newReply = vacancies.offers.forEach(function(offer)
+          {
+            list = list + "* " + offer.title + "\n";
+          });
+
+          /* send both messages to facebook */
+            let compiledMessage = reply + list;
+            sendTextMessage (sender, compiledMessage);
+        }
+      );
 
 
       break;
+
         default:
             //unhandled action, just send back the text
             handleMessages(messages, sender);
@@ -308,6 +333,23 @@ function handleCardMessages(messages, sender) {
     sendGenericMessage(sender, elements);
 }
 
+function sendPassThread(senderID)
+{
+  request(
+    {
+      uri: "https://graph.facebook.com/v2.6/me/pass_thread_control",
+      qs: { access_token: config.FB_PAGE_TOKEN },
+      method: "POST",
+      json: {
+        recipient:
+          {
+          id: senderID
+          },
+        target_app_id: config.FB_PAGE_INBOX_ID
+      }
+    }
+  );
+}
 
 function handleMessages(messages, sender) {
     let timeoutInterval = 1100;
