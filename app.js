@@ -225,7 +225,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
         let list ="";
         let newReply = vacancies.offers.forEach(function(offer)
         {
-          list = list + offer.title + "\n";
+          list = list + "✅" offer.title + "\n";
         });
 
         /* send both messages to facebook */
