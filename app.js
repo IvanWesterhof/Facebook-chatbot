@@ -747,6 +747,9 @@ function receivedPostback(event) {
     var payload = event.postback.payload;
 
     switch (payload) {
+      case 'GET_STARTED':
+      greetUserText(senderID);
+      break;
         default:
             //unindentified payload
             sendTextMessage(senderID, "I'm not sure what you want. Can you be more specific?");
@@ -757,6 +760,40 @@ function receivedPostback(event) {
     console.log("Received postback for user %d and page %d with payload '%s' " +
         "at %d", senderID, recipientID, payload, timeOfPostback);
 
+}
+
+function greetUserText(userID)
+{
+//first read user first name
+  request(
+    {
+      uri: 'https://graph.facebook.com/v3.2/' + userID,
+      qs: {
+          access_token: config.FB_PAGE_TOKEN
+          }
+    }, function (error, response, body)
+      {
+        if (!error && response.statusCode == 200)
+          {
+            var user = JSON.parse(body);
+            console.log('getUserData: ' + user);
+              if (user.first_name)
+              {
+                console.log("FB user: %s %s %s",
+                    user.first_name, user.last_name, user.profile_pic);
+                sendTextMessage(userID, "Welcome " + user.first_name + '! ' + "I can answer frequently asked questions for you and I can tell you about our current job openings. What can I help you with?");)
+              }
+              else
+              {
+                console.log("Cannot get data for fb user with id ", userID);
+              }
+          }
+        else
+          {
+            console.error(response.error);
+          }
+
+      });
 }
 
 
