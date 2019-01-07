@@ -229,9 +229,9 @@ let text2 ="";
         let newReply = vacancies.offers.forEach(function(title) {
     text2 = text2 + ", " + title;
 
-        })
+  });
 
-          sendTextMessage (sender, text2)};
+          sendTextMessage (sender, text2);
 
 
 
