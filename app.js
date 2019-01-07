@@ -204,40 +204,31 @@ function handleEcho(messageId, appId, metadata) {
 
 function handleDialogFlowAction(sender, action, messages, contexts, parameters)
 {
-    switch (action) {
-      case "test-action":
-      sendTextMessage (sender, "the action was caught");
-      request({
-        url: 'https://springbokdigital.recruitee.com/api/offers',
-      }, function (error, response, body) {
-        let vacancies = JSON.parse(body);
-        let reply = `${messages[0].text.text} ${vacancies["offers"][0]["title"]}`;
-        // let reply = `${messages[0].text.text} ${vacancies["offers"][0]["title"]}`;
-        sendTextMessage (sender, reply);
-      }
-    );
-      break;
+    switch (action)
+  {
+      // for the case current-vacancies
       case "current-vacancies":
+      // make an api request
       request(
       {
         url: 'https://springbokdigital.recruitee.com/api/offers',
       }, function (error, response, body)
       {
 
-        /* ophalen van json */
+        /* name the object and parse the json */
         let vacancies = JSON.parse(body);
 
-        /*ophalen job titels beschrijving */
+        /* retrieve length and dialogflow message */
         let reply = `There are ${vacancies.offers.length} job offers at Springbok right now. ${messages[0].text.text}`;
 
-        /*ophalen van job titels*/
+        /* retrieve list of job titles */
         let text2 ="";
         let newReply = vacancies.offers.forEach(function(offer)
         {
           text2 = text2 + offer.title + "\n";
         });
 
-        /* Versturen van berichten naar facebook */
+        /* send both messages to facebook */
           sendTextMessage (sender, text2);
           sendTextMessage (sender, reply)
       }
