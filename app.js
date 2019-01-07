@@ -226,7 +226,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
         let text2 ="";
         let newReply = vacancies.offers.forEach(function(offer)
         {
-          text2 = text2 + offer.title + "<br>";
+          text2 = text2 + offer.title + \n\n ;
         });
           sendTextMessage (sender, text2);
       }
