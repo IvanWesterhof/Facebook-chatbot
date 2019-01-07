@@ -221,15 +221,15 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
         /* retrieve length and dialogflow message */
         let reply = `There are ${vacancies.offers.length} job offers at Springbok right now. ${messages[0].text.text}`;
 
-        /* retrieve list of job titles */
-        let text2 ="";
+        /* retrieve list of job titles from array */
+        let list ="";
         let newReply = vacancies.offers.forEach(function(offer)
         {
-          text2 = text2 + offer.title + "\n";
+          list = list + offer.title + "\n";
         });
 
         /* send both messages to facebook */
-          sendTextMessage (sender, text2);
+          sendTextMessage (sender, list);
           sendTextMessage (sender, reply)
       }
     );
