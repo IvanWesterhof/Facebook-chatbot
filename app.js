@@ -213,10 +213,6 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
         let reply = `${messages[0].text.text} ${vacancies["offers"][0]["title"]}`;
         // let reply = `${messages[0].text.text} ${vacancies["offers"][0]["title"]}`;
         sendTextMessage (sender, reply);
-        let secondreplytest = vacancies.offers.forEach (myFunction) {
-          function myFunction (title);
-        }
-        sendTextMessage (sender, secondreplytest);
       }
     );
       break;
@@ -226,8 +222,15 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
         url: 'https://springbokdigital.recruitee.com/api/offers',
       }, function (error, response, body) {
         let vacancies = JSON.parse(body);
-        let reply = `There are ${vacancies.offers.length} job offers at Springbok right now. ${messages[0].text.text} ${vacancies["offers"][0]["title"]}`;
+        let reply = `There are ${vacancies.offers.length} job offers at Springbok right now. ${messages[0].text.text} ${vacancies.offers[0].title}`;
         sendTextMessage (sender, reply);
+
+let text2 ="";
+            text2 = text2 + ", " + title;
+          sendTextMessage (sender, text2)};
+
+
+
       }
     );
       break;
