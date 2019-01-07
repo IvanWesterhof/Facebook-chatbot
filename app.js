@@ -228,6 +228,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
   {
       // for talk.human case
       case "talk.human":
+        sendTextMessage(sender, "I'll transfer you right away!");
         sendPassThread(sender);
       break;
       // for the case current-vacancies
