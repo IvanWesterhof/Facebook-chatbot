@@ -781,7 +781,7 @@ function greetUserText(userID)
               {
                 console.log("FB user: %s %s %s",
                     user.first_name, user.last_name, user.profile_pic);
-                sendTextMessage(userID, "Welcome " + user.first_name + '! ' + "I can answer frequently asked questions for you and I can tell you about our current job openings. What can I help you with?");)
+                sendTextMessage(userID, "Welcome " + user.first_name + '! ' + "I can answer frequently asked questions for you and I can tell you about our current job openings. What can I help you with?");
               }
               else
               {
