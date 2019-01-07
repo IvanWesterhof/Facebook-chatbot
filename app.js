@@ -221,7 +221,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
         url: 'https://springbokdigital.recruitee.com/api/offers',
       }, function (error, response, body) {
         let vacancies = JSON.parse(body);
-        let reply = "There are ${vacancies.offers.length} job offers at Springbok right now. ${messages[0].text.text}";
+        let reply = `There are ${vacancies.offers.length} job offers at Springbok right now. ${messages[0].text.text}`;
         sendTextMessage (sender, reply);
         let text2 ="";
         let newReply = vacancies.offers.forEach(function(offer)
