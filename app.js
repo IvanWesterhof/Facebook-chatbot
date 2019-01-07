@@ -217,25 +217,18 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
     );
       break;
       case "current-vacancies":
-      sendTextMessage (sender, "the action was caught");
       request({
         url: 'https://springbokdigital.recruitee.com/api/offers',
       }, function (error, response, body) {
         let vacancies = JSON.parse(body);
         let reply = `There are ${vacancies.offers.length} job offers at Springbok right now. ${messages[0].text.text} ${vacancies.offers[0].title}`;
         sendTextMessage (sender, reply);
-
         let text2 ="";
         let newReply = vacancies.offers.forEach(function(offer)
         {
-          text2 = text2 + ", " + offer.title;
-
+          text2 = text2 + offer.title + "<br>";
         });
-
           sendTextMessage (sender, text2);
-
-
-
       }
     );
       break;
