@@ -229,8 +229,8 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
         });
 
         /* send both messages to facebook */
-          sendTextMessage (sender, list);
-          sendTextMessage (sender, reply)
+          let compiledMessage = reply + list;
+          sendTextMessage (sender, compiledMessage);
       }
     );
 
