@@ -202,7 +202,8 @@ function handleEcho(messageId, appId, metadata) {
     console.log("Received echo for message %s and app %d with metadata %s", messageId, appId, metadata);
 }
 
-function handleDialogFlowAction(sender, action, messages, contexts, parameters) {
+function handleDialogFlowAction(sender, action, messages, contexts, parameters)
+{
     switch (action) {
       case "test-action":
       sendTextMessage (sender, "the action was caught");
@@ -217,20 +218,32 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
     );
       break;
       case "current-vacancies":
-      request({
+      request(
+      {
         url: 'https://springbokdigital.recruitee.com/api/offers',
-      }, function (error, response, body) {
+      }, function (error, response, body)
+      {
+
+        /* ophalen van json */
         let vacancies = JSON.parse(body);
+
+        /*ophalen job titels beschrijving */
         let reply = `There are ${vacancies.offers.length} job offers at Springbok right now. ${messages[0].text.text}`;
-        sendTextMessage (sender, reply);
+
+        /*ophalen van job titels*/
         let text2 ="";
         let newReply = vacancies.offers.forEach(function(offer)
         {
           text2 = text2 + offer.title + "\n";
         });
+
+        /* Versturen van berichten naar facebook */
           sendTextMessage (sender, text2);
+          sendTextMessage (sender, reply)
       }
     );
+
+
       break;
         default:
             //unhandled action, just send back the text
