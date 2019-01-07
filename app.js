@@ -224,11 +224,15 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters) 
         let vacancies = JSON.parse(body);
         let reply = `There are ${vacancies.offers.length} job offers at Springbok right now. ${messages[0].text.text} ${vacancies.offers[0].title}`;
         sendTextMessage (sender, reply);
-/*
-        let text2 = "";
-            text2 = text2 + ", " + title;
+
+let text2 ="";
+        let newReply = vacancies.offers.forEach(function(title) {
+    text2 = text2 + ", " + title;
+
+        })
+
           sendTextMessage (sender, text2)};
-*/
+
 
 
       }
