@@ -227,7 +227,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
     switch (action)
   {
       case "job.title":
-        console.log('message sent with the entity: ', message);
+      //  console.log('message sent with the entity: ', message);
       break;
       // for talk.human case
       case "talk.human":
