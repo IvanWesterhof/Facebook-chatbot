@@ -226,6 +226,9 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
 {
     switch (action)
   {
+      case "job.title":
+        console.log('message sent with the entity: ', message);
+      break;
       // for talk.human case
       case "talk.human":
         sendTextMessage(sender, "I'll transfer you right away!");
@@ -239,27 +242,21 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
           url: 'https://springbokdigital.recruitee.com/api/offers',
         }, function (error, response, body)
         {
-
           /* name the object and parse the json */
           let vacancies = JSON.parse(body);
-
           /* retrieve length and dialogflow message */
           let reply = `There are ${vacancies.offers.length} job offers at Springbok right now.` + "\n" + `${messages[0].text.text}` + "\n" + "\n";
-
           /* retrieve list of job titles from array */
           let list ="";
           let newReply = vacancies.offers.forEach(function(offer)
           {
             list = list + "* " + offer.title + "\n";
           });
-
           /* send both messages to facebook */
             let compiledMessage = reply + list;
             sendTextMessage (sender, compiledMessage);
         }
       );
-
-
       break;
 
         default:
