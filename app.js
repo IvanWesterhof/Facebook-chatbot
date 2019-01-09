@@ -226,23 +226,48 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
 {
     switch (action)
   {
+    /*
       case "specific.function.vacancies":
-        console.log('parameters: ', parameters);
-       let reply =  "second method to catch the parameter: " + parameters.fields.jobtitle.stringValue;
+       let reply =  "Parameter: " + parameters.fields.jobtitle.stringValue;
        let specificJobtitle = parameters.fields.jobtitle.stringValue
+
+       request(
+       {
+         url: 'https://springbokdigital.recruitee.com/api/offers',
+       }, function (error, response, body)
+       {
+         /* binnenkomende json array omzetten in een js object
+         let vacancies = JSON.parse(body);
+
+         let vacancylist = "";
+         vacancies.offers.forEach(function(offer)
+          {
+            if (offer.includes (specificJobtitles))
+          }
+
+          )
+
+
+
+         let vacancy = "";
+         vacancies.offers.forEach(function(offer)
+         {
+           let title = offer.title;
+           if (title)
+           {
+
+           }
+         });
+       });
+
+
+
        switch (specificJobtitle)
         {
-          case "Developer":
 
 
-          break;
-          default:
-              //unhandled action, just send back the text
-              handleMessages(messages, sender);
-
-        }
-       sendTextMessage(sender, reply);
       break;
+      */
       // for talk.human case
       case "talk.human":
         sendTextMessage(sender, "I'll transfer you right away!");
@@ -269,8 +294,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
           /* send both messages to facebook */
             let compiledMessage = reply + list;
             sendTextMessage (sender, compiledMessage);
-        }
-      );
+        });
       break;
 
         default:
