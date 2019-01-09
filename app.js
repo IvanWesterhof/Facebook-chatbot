@@ -228,7 +228,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
   {
       case "specific.function.vacancies":
        let reply =  "Parameter: " + parameters.fields.jobtitle.stringValue;
-       let specificJobtitle = parameters.fields.jobtitle.stringValue
+       let specificJobtitle = parameters.fields.jobtitle.stringValue;
        request(
        {
          url: 'https://springbokdigital.recruitee.com/api/offers',
