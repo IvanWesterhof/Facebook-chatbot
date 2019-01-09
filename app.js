@@ -227,7 +227,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
     switch (action)
   {
       case "specific.function.vacancies":
-       let reply = "first method to catch the parameter: " + `${messages.parameters}` + "seecond method to catch the parameter: " + `${parameters}`;
+       let reply =  "seecond method to catch the parameter: " + `${parameters.jobtitle}`;
        sendTextMessage(sender, reply);
       break;
       // for talk.human case
