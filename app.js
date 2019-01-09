@@ -228,7 +228,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
   {
       case "specific.function.vacancies":
         console.log('parameters: ', parameters);
-       let reply =  "seecond method to catch the parameter: " + `${response.body.queryResult.parameters.jobtitle}`;
+       let reply =  "seecond method to catch the parameter: " + `${parameters.fields.jobtitle}`;
        sendTextMessage(sender, reply);
       break;
       // for talk.human case
