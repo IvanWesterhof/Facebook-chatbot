@@ -226,6 +226,8 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
 {
     switch (action)
   {
+
+
     /*
       case "specific.function.vacancies":
        let reply =  "Parameter: " + parameters.fields.jobtitle.stringValue;
@@ -274,7 +276,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
         sendPassThread(sender);
       break;
       // for the case current-vacancies
-      case "current-vacancies":
+      case "current.vacancies":
         // make an api request
         request(
         {
