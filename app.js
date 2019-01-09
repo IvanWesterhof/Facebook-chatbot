@@ -243,14 +243,10 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
               if (offer.title.includes (specificJobtitle))
               {
                 vacancylist = vacancylist + "* " + offer.title + "\n";
-              } else {
-                let nojob = "We don't seem to have a role specifically for a " + specificJobtitle + " If you'd like to see a list of all our jobs, just ask me. We're always open for new talents." ;   
-                sendTextMessage (sender, nojob);
-                }
+              }
             })
           let tellyoumore = "I'd be happy to tell you more, just ask me about one of them.";
           let reply = "Here are the current job offers we have for " + specificJobtitle + "s" + ": " + "\n" + "\n" + vacancylist + "\n" + tellyoumore;
-          console.log(vacancylist);
           sendTextMessage (sender, reply);
         });
       break;
