@@ -227,27 +227,26 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
     switch (action)
   {
       case "specific.function.vacancies":
-       let reply =  "Parameter: " + parameters.fields.jobtitle.stringValue;
-       let specificJobtitle = parameters.fields.jobtitle.stringValue;
        request(
        {
          url: 'https://springbokdigital.recruitee.com/api/offers',
        }, function (error, response, body)
        {
-         /* binnenkomende json array omzetten in een js object */
-         let vacancies = JSON.parse(body);
-         let vacancylist = "";
-         vacancies.offers.forEach(function(offer)
-          {
-            if (offer.includes (specificJobtitle))
+          /* binnenkomende json array omzetten in een js object */
+          let vacancies = JSON.parse(body);
+          let specificJobtitle = parameters.fields.jobtitle.stringValue;
+          let vacancylist = "";
+          vacancies.offers.forEach(function(offer)
             {
-              vacancylist = vacancylist + offer.title + "\n";
-            }
-          }
-          )
+              if (offer.title.includes (specificJobtitle))
+              {
+                vacancylist = vacancylist + offer.title + "\n";
+              }
+            })
           let reply = "Here are the job offers for " + parameters.fields.jobtitle.stringValue + ": " + vacancylist ;
-        sendTextMessage (sender, reply)
-       });
+          console.log(vacancylist);
+          sendTextMessage (sender, reply)
+        });
       break;
 
 
