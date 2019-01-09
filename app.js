@@ -236,6 +236,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
           /* binnenkomende json array omzetten in een js object */
           let vacancies = JSON.parse(body);
           let specificJobtitle = parameters.fields.jobtitle.stringValue;
+            console.log(specificJobtitle);
           let vacancylist = "";
           vacancies.offers.forEach(function(offer)
             {
@@ -247,7 +248,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
           let tellyoumore = "I'd be happy to tell you more, just ask me about one of them.";
           let reply = "Here are the current job offers we have for " + specificJobtitle + "s" + ": " + "\n" + "\n" + vacancylist + "\n" + tellyoumore;
           console.log(vacancylist);
-          sendTextMessage (sender, reply)
+          sendTextMessage (sender, reply);
         });
       break;
 
