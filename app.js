@@ -226,50 +226,31 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
 {
     switch (action)
   {
-
-
-    /*
       case "specific.function.vacancies":
        let reply =  "Parameter: " + parameters.fields.jobtitle.stringValue;
        let specificJobtitle = parameters.fields.jobtitle.stringValue
-
        request(
        {
          url: 'https://springbokdigital.recruitee.com/api/offers',
        }, function (error, response, body)
        {
-         /* binnenkomende json array omzetten in een js object
+         /* binnenkomende json array omzetten in een js object */
          let vacancies = JSON.parse(body);
-
          let vacancylist = "";
          vacancies.offers.forEach(function(offer)
           {
-            if (offer.includes (specificJobtitles))
+            if (offer.includes(specificJobtitles))
+            {
+              vacancylist = vacancylist + offer.title + "\n";
+            }
           }
-
           )
-
-
-
-         let vacancy = "";
-         vacancies.offers.forEach(function(offer)
-         {
-           let title = offer.title;
-           if (title)
-           {
-
-           }
-         });
+          let reply = "Here are the job offers for " + parameters.fields.jobtitle.stringValue + ": " + vacancylist ;
+        sendTextMessage (sender, reply)
        });
-
-
-
-       switch (specificJobtitle)
-        {
-
-
       break;
-      */
+
+
       // for talk.human case
       case "talk.human":
         sendTextMessage(sender, "I'll transfer you right away!");
@@ -294,8 +275,8 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
             list = list + "* " + offer.title + "\n";
           });
           /* send both messages to facebook */
-            let compiledMessage = reply + list;
-            sendTextMessage (sender, compiledMessage);
+          let compiledMessage = reply + list;
+          sendTextMessage (sender, compiledMessage);
         });
       break;
 
