@@ -227,7 +227,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
     switch (action)
   {
       case "specific.function.vacancies":
-       console.log('message sent with the entity: ', message);
+       sendTextMessage(sender, "specific vacancy action is caught");
       break;
       // for talk.human case
       case "talk.human":
