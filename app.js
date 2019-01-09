@@ -240,11 +240,11 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
             {
               if (offer.title.includes (specificJobtitle))
               {
-                vacancylist = vacancylist + offer.title + "\n";
+                vacancylist = vacancylist + "* " + offer.title + "\n";
               }
             })
           let tellyoumore = "I'd be happy to tell you more, just ask me about one of them."
-          let reply = "Here are the job offers for " + specificJobtitle + ": " + "\n" + vacancylist + "\n" + tellyoumore;
+          let reply = "Here are the current job offers we have for " + specificJobtitle + "s" + ": " + "\n" + "\n" + vacancylist + "\n" + tellyoumore;
           console.log(vacancylist);
           sendTextMessage (sender, reply)
         });
