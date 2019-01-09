@@ -229,7 +229,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
       case "specific.function.vacancies":
         console.log('parameters: ', parameters);
        let reply =  "second method to catch the parameter: " + parameters.fields.jobtitle.stringValue;
-       let specificJobtitle = ${parameters.fields.jobtitle.stringValue}
+       let specificJobtitle = parameters.fields.jobtitle.stringValue
        switch (specificJobtitle)
         {
           case "Developer":
