@@ -243,7 +243,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
                 vacancylist = vacancylist + "* " + offer.title + "\n";
               }
             })
-          let tellyoumore = "I'd be happy to tell you more, just ask me about one of them."
+          let tellyoumore = "I'd be happy to tell you more, just ask me about one of them.";
           let reply = "Here are the current job offers we have for " + specificJobtitle + "s" + ": " + "\n" + "\n" + vacancylist + "\n" + tellyoumore;
           console.log(vacancylist);
           sendTextMessage (sender, reply)
