@@ -239,7 +239,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
          let vacancylist = "";
          vacancies.offers.forEach(function(offer)
           {
-            if (offer.includes(specificJobtitle))
+            if (offer.includes (specificJobtitle))
             {
               vacancylist = vacancylist + offer.title + "\n";
             }
