@@ -234,7 +234,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
           }, function (error, response, body)
             {
               let vacancies = JSON.parse(body);
-              let moreInfoAbout = parameters.fields.jobtitle.stringValue;
+              let moreInfoAbout = parameters.fields.SpecificSPBKjob.stringValue;
               let jobdescription = "";
               let joburl = "";
               vacancies.offers.forEach(function(offer)
@@ -242,7 +242,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
                     if (offer.title.match(moreInfoAbout))
                       {
                         jobdescription = offer.description;
-                        joburl = offers.careers_url;
+                        joburl = offer.careers_url;
                       }
                   });
               let reply = "Here's the description straight from our job offers page:" + jobdescription + "\n" + "\n" + "If you want to learn more, go to" + joburl ;
