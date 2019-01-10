@@ -227,6 +227,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
     switch (action)
   {
       case "more.info.job":
+      console.log(parameters);
         request(
           {
             url: 'https://springbokdigital.recruitee.com/api/offers',
