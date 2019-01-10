@@ -226,6 +226,28 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
 {
     switch (action)
   {
+      case "more.info.job":
+        request(
+          {
+            url: 'https://springbokdigital.recruitee.com/api/offers',
+          }, function (error, response, body)
+            {
+              let vacancies = JSON.parse(body);
+              let moreInfoAbout = parameters.fields.jobtitle.stringValue;
+              let jobdescription = "";
+              let joburl = "";
+              vacancies.offers.forEach(function(offer)
+                  {
+                    if (offer.title.match(moreInfoAbout))
+                      {
+                        jobdescription = offer.description;
+                        joburl = offers.careers_url;
+                      }
+                  });
+              let reply = "Here's the description straight from our job offers page:" + jobdescription + "\n" + "\n" + "If you want to learn more, go to" + joburl ;
+              sendTextMessage (sender, reply);
+            });
+      break;
       case "specific.function.vacancies":
       console.log(parameters);
        request(
@@ -250,8 +272,6 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
           sendTextMessage (sender, reply);
         });
       break;
-
-
       // for talk.human case
       case "talk.human":
         sendTextMessage(sender, "I'll transfer you right away!");
