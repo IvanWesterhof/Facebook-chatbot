@@ -245,7 +245,8 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
                         joburl = offer.careers_url;
                       }
                   });
-              let reply = "Here's the description straight from our job offers page:" + jobdescription + "\n" + "\n" + "If you want to learn more, go to" + joburl ;
+                let jobdescription = URIencode(jobdescription);
+              let reply = "Here's the description straight from our job offers page: \n " + jobdescription + "\n" + "\n" + "If you want to learn more, go to " + joburl ;
               sendTextMessage (sender, reply);
             });
       break;
