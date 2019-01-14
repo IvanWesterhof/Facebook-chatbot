@@ -250,6 +250,9 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
               sendTextMessage (sender, reply);
             });
       break;
+      case "input.unknown":
+          sendTextMessage(sender, "Can you say that again?");
+      break;
       case "specific.function.vacancies":
       console.log(parameters);
        request(
