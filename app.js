@@ -407,7 +407,7 @@ function handleMessages(messages, sender) {
     let previousType ;
     let cardTypes = [];
     let timeout = 0;
-  //  console.log("message that dialogflow sends: "  messages);
+   console.log("message that dialogflow sends: ",messages);
     for (var i = 0; i < messages.length; i++) {
 
         if ( previousType == "card" && (messages[i].message != "card" || i == messages.length - 1)) {
