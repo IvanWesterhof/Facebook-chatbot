@@ -284,10 +284,12 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
         });
       break;
       // for talk.human case
+      /*
       case "talk.human":
         sendTextMessage(sender, "I'll transfer you right away!");
         sendPassThread(sender);
       break;
+      */
       // for the case current-vacancies
       case "current.vacancies":
         // make an api request
@@ -383,7 +385,7 @@ function handleCardMessages(messages, sender) {
     }
     sendGenericMessage(sender, elements);
 }
-
+/*
 function sendPassThread(senderID)
 {
   request(
@@ -401,6 +403,7 @@ function sendPassThread(senderID)
     }
   );
 }
+*/
 
 function handleMessages(messages, sender) {
     let timeoutInterval = 1100;
