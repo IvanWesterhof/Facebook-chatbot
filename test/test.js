@@ -7,7 +7,7 @@ var vacancies = [
 ];
 
 
-var specificJobtitle = 'boris';
+var specificJobtitle = 'Developer';
 
 let vacancylist = "";
 vacancies.forEach( function( offer )
