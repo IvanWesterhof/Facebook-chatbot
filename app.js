@@ -835,6 +835,7 @@ function callSendAPI(messageData) {
  *
  */
 function receivedPostback(event) {
+      console.log(event);
     var senderID = event.sender.id;
     var recipientID = event.recipient.id;
     var timeOfPostback = event.timestamp;
@@ -842,7 +843,6 @@ function receivedPostback(event) {
     // The 'payload' param is a developer-defined field which is set in a postback
     // button for Structured Messages.
     var payload = event.postback.payload;
-      console.log(payload);
     switch (payload) {
       case 'GET_STARTED':
         greetUserText(senderID);
