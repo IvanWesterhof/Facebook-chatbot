@@ -251,13 +251,9 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
             });
       break;
 
-      /*
-
       case "input.unknown":
           sendTextMessage(sender, "Can you say that again?");
       break;
-
-      */
 
       case "specific.function.vacancies":
       console.log(parameters);
@@ -284,12 +280,10 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
         });
       break;
       // for talk.human case
-      /*
       case "talk.human":
         sendTextMessage(sender, "I'll transfer you right away!");
         sendPassThread(sender);
       break;
-      */
       // for the case current-vacancies
       case "current.vacancies":
         // make an api request
@@ -385,7 +379,7 @@ function handleCardMessages(messages, sender) {
     }
     sendGenericMessage(sender, elements);
 }
-/*
+
 function sendPassThread(senderID)
 {
   request(
@@ -403,7 +397,6 @@ function sendPassThread(senderID)
     }
   );
 }
-*/
 
 function handleMessages(messages, sender) {
     let timeoutInterval = 1100;
@@ -493,8 +486,6 @@ async function sendToDialogFlow(sender, textString, params) {
     }
 
 }
-
-
 
 
 function sendTextMessage(recipientId, text) {
@@ -598,7 +589,7 @@ function sendVideoMessage(recipientId, videoName) {
 }
 
 /*
- * Send a video using the Send API.
+ * Send a file using the Send API.
  * example fileName: fileName"/assets/test.txt"
  */
 function sendFileMessage(recipientId, fileName) {
