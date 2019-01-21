@@ -227,8 +227,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
     switch (action)
   {
       case "more.info.job":
-      console.log("caught more.info.job");
-      console.log(parameters);
+      console.log("caught more.info.job", parameters);
         request(
           {
             url: 'https://springbokdigital.recruitee.com/api/offers',
@@ -242,7 +241,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
                   {
                     if (offer.title.match(moreInfoAbout))
                       {
-                        jobdescription = URIencode(offer.description);
+                        jobdescription = offer.description;
                         joburl = offer.careers_url;
                       }
                   });
