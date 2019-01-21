@@ -227,6 +227,7 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
     switch (action)
   {
       case "more.info.job":
+      console.log("caught more.info.job");
       console.log(parameters);
         request(
           {
@@ -241,11 +242,10 @@ function handleDialogFlowAction(sender, action, messages, contexts, parameters)
                   {
                     if (offer.title.match(moreInfoAbout))
                       {
-                        jobdescription = offer.description;
+                        jobdescription = URIencode(offer.description);
                         joburl = offer.careers_url;
                       }
                   });
-                let jobdescription = URIencode(jobdescription);
               let reply = "Here's the description straight from our job offers page: \n " + jobdescription + "\n" + "\n" + "If you want to learn more, go to " + joburl ;
               sendTextMessage (sender, reply);
             });
