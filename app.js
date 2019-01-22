@@ -834,7 +834,7 @@ function receivedPostback(event) {
     // button for Structured Messages.
     var payload = event.postback.payload;
     switch (payload) {
-      case 'GET_STARTED':
+      case 'FACEBOOK_WELCOME':
         greetUserText(senderID);
       break;
         default:
